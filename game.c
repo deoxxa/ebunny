@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stddef.h>
 
 #include "config.h"
 #include "display.h"
@@ -174,8 +174,6 @@ void game_tick(game_t *g) {
 
 void game_action(game_t *g, int action) {
   g->activity_frames += 16;
-
-  printf("game_action: %d\n", action);
 
   switch (action) {
   case ACTION_POKE:
