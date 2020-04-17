@@ -1,0 +1,8 @@
+/.output
+/user/.output
+/bin/eagle.*
+/build
+/firmware
+/main_lcd
+/main_sdl
+/*.o

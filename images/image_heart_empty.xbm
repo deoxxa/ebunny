@@ -1,0 +1,4 @@
+#define image_heart_empty_width 7
+#define image_heart_empty_height 7
+static unsigned char image_heart_empty_bits[] = { 0x36, 0x49, 0x41, 0x41, 0x22, 0x14, 0x08 };
+static image_t image_heart_empty = { .width = 7, .height = 7, .bits = image_heart_empty_bits };

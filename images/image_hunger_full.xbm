@@ -1,0 +1,4 @@
+#define image_hunger_full_width 7
+#define image_hunger_full_height 7
+static unsigned char image_hunger_full_bits[] = { 0x06, 0x0f, 0x1f, 0x1e, 0x7c, 0x50, 0x30 };
+static image_t image_hunger_full = { .width = 7, .height = 7, .bits = image_hunger_full_bits };

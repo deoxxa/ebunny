@@ -1,0 +1,4 @@
+#define image_battery_4_width 4
+#define image_battery_4_height 7
+static unsigned char image_battery_4_bits[] = { 0x06, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f, 0x0f };
+static image_t image_battery_4 = { .width = 4, .height = 7, .bits = image_battery_4_bits };

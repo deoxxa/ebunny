@@ -1,0 +1,8 @@
+#define FPS 5
+
+#define ENERGY_MAX 10
+#define ENERGY_DECAY_TIME 60.0
+#define HUNGER_MAX 14
+#define HUNGER_DECAY_TIME 60.0
+#define INTEREST_MAX 10
+#define INTEREST_DECAY_TIME 60.0
