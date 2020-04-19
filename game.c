@@ -49,6 +49,8 @@ void game_tick(game_t* g) {
     case FACING_FRONT:
       if (sleeping)
         image = g->sprite->front_sleeping;
+      else if ((g->tick % 9) == 0 || (g->tick % 15) == 0)
+        image = g->sprite->front_lowered;
       else
         image = g->sprite->front_normal;
       break;
@@ -56,6 +58,8 @@ void game_tick(game_t* g) {
     case FACING_RIGHT:
       if (sleeping)
         image = g->sprite->side_sleeping;
+      else if ((g->tick % 9) == 0 || (g->tick % 15) == 0)
+        image = g->sprite->side_lowered;
       else
         image = g->sprite->side_normal;
       break;
