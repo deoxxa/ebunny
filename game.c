@@ -107,16 +107,16 @@ void game_tick(game_t* g) {
   for (int i = 0; i < 3; i++) {
     if (g->interest_points >= i * 2 + 2) {
       if (g->interest_points > 0 || g->tick % FPS >= FPS / 2)
-        image_draw(g->display, &image_heart_full,
-                   DISPLAY_WIDTH - 8 * (2 - i), 0, IMAGE_ORIGIN_RIGHT);
+        image_draw(g->display, &image_heart_full, DISPLAY_WIDTH - 8 * (2 - i),
+                   0, IMAGE_ORIGIN_RIGHT);
     } else if (g->interest_points == i * 2 + 1) {
       if (g->interest_points > 0 || g->tick % FPS >= FPS / 2)
-        image_draw(g->display, &image_heart_half,
-                   DISPLAY_WIDTH - 8 * (2 - i), 0, IMAGE_ORIGIN_RIGHT);
+        image_draw(g->display, &image_heart_half, DISPLAY_WIDTH - 8 * (2 - i),
+                   0, IMAGE_ORIGIN_RIGHT);
     } else {
       if (g->interest_points > 0 || g->tick % FPS >= FPS / 2)
-        image_draw(g->display, &image_heart_empty,
-                   DISPLAY_WIDTH - 8 * (2 - i), 0, IMAGE_ORIGIN_RIGHT);
+        image_draw(g->display, &image_heart_empty, DISPLAY_WIDTH - 8 * (2 - i),
+                   0, IMAGE_ORIGIN_RIGHT);
     }
   }
 
@@ -134,6 +134,13 @@ void game_tick(game_t* g) {
         image_draw(g->display, &image_hunger_empty, 8 * i, 0, 0);
     }
   }
+
+  // draw tick counter
+
+  // display_move(g->display, 0, 8);
+  // char buf[18];
+  // snprintf(buf, sizeof(buf), "My name is %d", g->tick);
+  // display_puts_3x5(g->display, buf);
 
   // draw rabbit
 
