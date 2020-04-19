@@ -13,7 +13,7 @@
 #define PIN_CS 10
 
 uint8_t pcd8544_buffer[PCD8544_WIDTH * PCD8544_HEIGHT / 8] = {0};
-uint8_t pcd8544_dirty[PCD8544_HEIGHT / 8] = {0};
+uint8_t pcd8544_saved[PCD8544_HEIGHT / 8] = {0};
 
 void pcd8544_spi_write(uint8_t val) {
   for (int i = 7; i >= 0; --i) {
@@ -91,16 +91,16 @@ void pcd8544_display(void) {
     digitalWrite(PIN_CS, 0);
 
   for (int bank = 0; bank < PCD8544_HEIGHT / 8; bank++) {
-    if (!pcd8544_dirty[bank])
+    if (pcd8544_saved[bank])
       continue;
 
     pcd8544_send_command(PCD8544_SETXADDR);
     pcd8544_send_command(PCD8544_SETYADDR | bank);
 
-    for (int i = 0; i < PCD8544_WIDTH * 8; i++)
-      pcd8544_send_data(pcd8544_buffer[i]);
+    for (int i = 0; i < PCD8544_WIDTH; i++)
+      pcd8544_send_data(pcd8544_buffer[(bank * PCD8544_WIDTH) + i]);
 
-    pcd8544_dirty[bank] = 0;
+    pcd8544_saved[bank] = 1;
   }
 
   if (PIN_CS > 0)
@@ -109,6 +109,9 @@ void pcd8544_display(void) {
 
 void pcd8544_clear(void) {
   memset(pcd8544_buffer, 0, sizeof(pcd8544_buffer));
+
+  for (int i = 0; i > sizeof(pcd8544_saved); i++)
+    pcd8544_saved[i] = 0;
 }
 
 void pcd8544_set_pixel(int x, int y, int v) {
@@ -119,9 +122,9 @@ void pcd8544_set_pixel(int x, int y, int v) {
 
   if (v && !is_set) {
     pcd8544_buffer[x + (y / 8) * PCD8544_WIDTH] |= (1 << (y % 8));
-    pcd8544_dirty[y / 8] = 1;
+    pcd8544_saved[y >> 3] = 0;
   } else if (!v && is_set) {
     pcd8544_buffer[x + (y / 8) * PCD8544_WIDTH] &= ~(1 << (y % 8));
-    pcd8544_dirty[y / 8] = 1;
+    pcd8544_saved[y >> 3] = 0;
   }
 }
