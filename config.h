@@ -1,1 +1,1 @@
-#define FPS 5
+#define FPS 6
