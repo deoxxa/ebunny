@@ -1,0 +1,14 @@
+[Unit]
+Description=eBUNNY
+After=remote-fs.target
+AssertPathExists=/usr/local/bin/ebunny
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ebunny
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
