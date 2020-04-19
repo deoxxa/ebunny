@@ -24,6 +24,6 @@ typedef struct game_s {
 #define ACTION_RESET_SPRITE 5
 #define ACTION_RANDOM_SPRITE 6
 
-void game_init(game_t *g, display_t *display);
+void game_init(game_t* g, display_t* display);
 void game_tick(game_t* g);
 void game_action(game_t* g, int action);
