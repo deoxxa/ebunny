@@ -2,10 +2,10 @@ CFLAGS := -I/usr/include/SDL2 -Werror -Wall
 
 all: main_lcd main_sdl
 
-main_lcd: image.o game.o sprites.o pcd8544.o main_lcd.o
+main_lcd: main_lcd.o display.o image.o game.o sprites.o pcd8544.o
 	$(CC) -o $@ $^ -lwiringPi -pthread
 
-main_sdl: image.o game.o sprites.o main_sdl.o
+main_sdl: main_sdl.o display.o image.o game.o sprites.o
 	$(CC) -o $@ $^ -lSDL2
 
 clean:

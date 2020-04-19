@@ -14,6 +14,15 @@ void display_lcd_clear(display_t* d) {
 }
 
 void display_lcd_set_pixel(display_t* d, int x, int y, char v) {
+  if ((x < 0) || (x >= DISPLAY_WIDTH) || (y < 0) || (y >= DISPLAY_HEIGHT)) {
+    return;
+  }
+
+  if (d->flip) {
+    x = DISPLAY_WIDTH - x - 1;
+    y = DISPLAY_HEIGHT - y - 1;
+  }
+
   pcd8544_set_pixel(x, y, v);
 }
 
@@ -53,6 +62,8 @@ int main(int argc, char* argv[]) {
   display_t display = {.clear = display_lcd_clear,
                        .set_pixel = display_lcd_set_pixel,
                        .flush = display_lcd_flush};
+
+  display_flip(&display, 1);
 
   game_t g;
   game_init(&g, &display);

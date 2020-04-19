@@ -8,4 +8,7 @@ typedef struct display_s {
   void (*clear)(struct display_s* d);
   void (*set_pixel)(struct display_s* d, int x, int y, char v);
   void (*flush)(struct display_s* d);
+  int flip;
 } display_t;
+
+void display_flip(display_t* d, int flip);

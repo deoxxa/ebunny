@@ -18,6 +18,11 @@ void display_sdl_set_pixel(display_t* d, int x, int y, char v) {
     return;
   }
 
+  if (d->flip) {
+    x = DISPLAY_WIDTH - x - 1;
+    y = DISPLAY_HEIGHT - y - 1;
+  }
+
   SDL_Rect r = {.x = x * 5, .y = y * 5, .w = 5, .h = 5};
 
   if (v) {
@@ -121,6 +126,9 @@ int main(int argc, char* argv[]) {
             break;
           case SDLK_s:
             game_action(&g, ACTION_RANDOM_SPRITE);
+            break;
+          case SDLK_f:
+            display_flip(&display, display.flip ? 0 : 1);
             break;
         }
 
