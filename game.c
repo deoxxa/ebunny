@@ -108,15 +108,15 @@ void game_tick(game_t* g) {
     if (g->interest_points >= i * 2 + 2) {
       if (g->interest_points > 0 || g->tick % FPS >= FPS / 2)
         image_draw(g->display, &image_heart_full,
-                   DISPLAY_WIDTH - 8 * (2 - i) - 1, 1, IMAGE_ORIGIN_RIGHT);
+                   DISPLAY_WIDTH - 8 * (2 - i), 0, IMAGE_ORIGIN_RIGHT);
     } else if (g->interest_points == i * 2 + 1) {
       if (g->interest_points > 0 || g->tick % FPS >= FPS / 2)
         image_draw(g->display, &image_heart_half,
-                   DISPLAY_WIDTH - 8 * (2 - i) - 1, 1, IMAGE_ORIGIN_RIGHT);
+                   DISPLAY_WIDTH - 8 * (2 - i), 0, IMAGE_ORIGIN_RIGHT);
     } else {
       if (g->interest_points > 0 || g->tick % FPS >= FPS / 2)
         image_draw(g->display, &image_heart_empty,
-                   DISPLAY_WIDTH - 8 * (2 - i) - 1, 1, IMAGE_ORIGIN_RIGHT);
+                   DISPLAY_WIDTH - 8 * (2 - i), 0, IMAGE_ORIGIN_RIGHT);
     }
   }
 
@@ -125,13 +125,13 @@ void game_tick(game_t* g) {
   for (int i = 0; i < 5; i++) {
     if (g->hunger_points >= i * 2 + 2) {
       if (g->hunger_points > 0 || g->tick % FPS >= FPS / 2)
-        image_draw(g->display, &image_hunger_full, 1 + 8 * i, 1, 0);
+        image_draw(g->display, &image_hunger_full, 8 * i, 0, 0);
     } else if (g->hunger_points == i * 2 + 1) {
       if (g->hunger_points > 0 || g->tick % FPS >= FPS / 2)
-        image_draw(g->display, &image_hunger_half, 1 + 8 * i, 1, 0);
+        image_draw(g->display, &image_hunger_half, 8 * i, 0, 0);
     } else {
       if (g->hunger_points > 0 || g->tick % FPS >= FPS / 2)
-        image_draw(g->display, &image_hunger_empty, 1 + 8 * i, 1, 0);
+        image_draw(g->display, &image_hunger_empty, 8 * i, 0, 0);
     }
   }
 
